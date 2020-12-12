@@ -3,7 +3,7 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound, HTTPSeeOther
 from pyramid.security import NO_PERMISSION_REQUIRED, Everyone, remember, authenticated_userid, unauthenticated_userid
 
-from .oauth import OAuth
+# from .oauth import OAuth
 from .utils import redirect_path
 from pyramid.view import (
     view_config,
@@ -33,7 +33,7 @@ def login(request):
 
     redirect_to = redirect_path(request)
 
-    response = Response(json.dumps({'note': 'testing'}))
+    response = Response(json.dumps({'note': 'testing'}), headers=headers)
     return response
 
 
@@ -59,8 +59,8 @@ def callback(request):
     return response
 
 
-# @view_config(route_name='resource_1', permission='edit')
-@view_config(route_name='resource_1')
+@view_config(route_name='resource_1', permission='edit')
+# @view_config(route_name='resource_1')
 def resource_1(request):
     print('u - ',unauthenticated_userid(request))
     print('a -', authenticated_userid(request))
