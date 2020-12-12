@@ -33,7 +33,7 @@ def login(request):
 
     redirect_to = redirect_path(request)
 
-    response = Response(json.dumps({'note': 'testing'}), headers=headers)
+    response = Response(json.dumps({'note': 'testing'}))
     return response
 
 
